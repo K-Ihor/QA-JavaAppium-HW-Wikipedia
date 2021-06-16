@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ abstract public class SearchPageObject extends MainPageObject
             FIND_TEXT_TPL,
             FIND_TITLE_AND_DESCRIPTION;
 
-    public SearchPageObject(AppiumDriver driver) // берем драйвер из MainPageObject
+    public SearchPageObject(RemoteWebDriver driver) // берем драйвер из MainPageObject
     {
         super(driver);
     }

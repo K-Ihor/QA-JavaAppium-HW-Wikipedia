@@ -2,10 +2,7 @@ package tests;
 
 import lib.CoreTestCase;
 import lib.Platform;
-import lib.ui.ArticlePageObject;
-import lib.ui.MyListsPageObject;
-import lib.ui.NavigationUI;
-import lib.ui.SearchPageObject;
+import lib.ui.*;
 import lib.ui.factories.ArticlePageObjectFactory;
 import lib.ui.factories.MyListsPageObjectFactory;
 import lib.ui.factories.NavigationUIFactory;
@@ -14,19 +11,41 @@ import org.junit.Test;
 
 public class MyListsTests extends CoreTestCase
 {
+    private static final String
+            login = "K-Ihor-m",
+            password = "KIhor324217";
+
     @Test
     public void test_save_of_2_articles()
     {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+        SearchPageObject.clickByArticleWithSubstring("bject-oriented programming language");
 
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
+
+        ArticlePageObject.waitForTitleElement();
+        String article_title = ArticlePageObject.getArticleTitle();
 
         if(Platform.getInstance().isAndroid()){
             ArticlePageObject.createMyListAndAddArticle("Learning programing");
         }else {
+            ArticlePageObject.addArticlesToMySaved();
+        }
+        if(Platform.getInstance().isMW()){
+            AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
+            Auth.clickAuthButton();
+            Auth.enterLoginData(login, password);
+            Auth.submitFrom();
+
+            ArticlePageObject.waitForTitleElement();
+
+            assertEquals("We are not on the same page after login.",
+                    article_title,
+                    ArticlePageObject.getArticleTitle()
+            );
+
             ArticlePageObject.addArticlesToMySaved();
         }
         ArticlePageObject.closeArticle();
@@ -43,6 +62,7 @@ public class MyListsTests extends CoreTestCase
         ArticlePageObject.closeArticle();
 
         NavigationUI NavigationUI = NavigationUIFactory.get(driver);
+        NavigationUI.openNavigation();
         NavigationUI.clickMyLists();
 
         MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);

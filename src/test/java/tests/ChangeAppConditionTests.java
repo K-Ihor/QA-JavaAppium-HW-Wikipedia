@@ -1,6 +1,7 @@
 package tests;
 
 import lib.CoreTestCase;
+import lib.Platform;
 import lib.ui.SearchPageObject;
 import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
@@ -9,7 +10,11 @@ public class ChangeAppConditionTests extends CoreTestCase
 {
     // тест отрабатывает testCheckSearchArticleInBackground() только на 9-ом андроиде
     @Test
-    public void testCheckSearchArticleInBackground() {
+    public void testCheckSearchArticleInBackground()
+    {
+        if (Platform.getInstance().isMW()){
+            return;  // если MW то тест будет пропускаться
+        }
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");

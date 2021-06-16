@@ -10,8 +10,8 @@ public class GetStartedTest extends CoreTestCase {
     @Test
     public void testPassThroughWelcome()
     {
-        if (Platform.getInstance().isAndroid()){
-            return;
+        if ((Platform.getInstance().isAndroid()) ||  (Platform.getInstance().isMW())){
+        return; // если MW или Android то тест будет пропускаться
         }
         WelcomePageObject WelcomePage = new WelcomePageObject(driver);
 

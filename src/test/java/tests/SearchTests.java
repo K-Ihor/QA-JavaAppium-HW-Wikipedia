@@ -48,8 +48,8 @@ public class SearchTests extends CoreTestCase
         int amount_of_search_results = SearchPageObject.getAmountOfFoundArticle();
         assertTrue("Search result < 3 article", amount_of_search_results >= 3);
         SearchPageObject.waitForElementByTitleAndDescription("Java", "Island of Indonesia");
-        SearchPageObject.waitForElementByTitleAndDescription("JavaScript", "Programming language");
-        SearchPageObject.waitForElementByTitleAndDescription("Java (programming language)", "Object-oriented programming language");
+        SearchPageObject.waitForElementByTitleAndDescription("JavaScript", "rogramming language");
+        SearchPageObject.waitForElementByTitleAndDescription("Java (programming language)", "bject-oriented programming language");
 
     }
 }

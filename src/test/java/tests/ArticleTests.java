@@ -15,7 +15,7 @@ public class ArticleTests extends CoreTestCase
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+        SearchPageObject.clickByArticleWithSubstring("bject-oriented programming language");
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
         String title_article = ArticlePageObject.getArticleTitle();
         Assert.assertTrue("title_article != 'Java (programming language)'", title_article.contains("Java (programming language)"));
