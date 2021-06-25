@@ -1,6 +1,7 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import lib.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -28,14 +29,18 @@ abstract public class ArticlePageObject extends MainPageObject
     {
         super(driver);
     }
+
+    @Step("Waiting for title on the article page")
     public WebElement waitForTitleElement()
     {
         return this.waitForElementPresent(TITLE, "Can`t find article title on page!", 25);
     }
 
+    @Step("Get article title")
     public String getArticleTitle()
     {
         WebElement title_element = waitForTitleElement();
+        screenshot(this.takeScreenshot("article_title"));
         if(Platform.getInstance().isAndroid()){
             return title_element.getAttribute("text");
         }else if (Platform.getInstance().isIOS()){
@@ -45,6 +50,7 @@ abstract public class ArticlePageObject extends MainPageObject
         }
     }
 
+    @Step("Swiping to footer on article page")
     public void swipeToFooter()
     {
         if(Platform.getInstance().isAndroid()){
@@ -66,6 +72,7 @@ abstract public class ArticlePageObject extends MainPageObject
         }
     }
 
+    @Step("Create My List And Add Article")
     public void createMyListAndAddArticle(String name_of_folder)
     {
         this.waitForElementPresent(
@@ -118,6 +125,7 @@ abstract public class ArticlePageObject extends MainPageObject
         );
     }
 
+    @Step("Adding article to my list")
     public void addArticleToMyList(String in_folder)
     {
         this.waitForElementPresent(
@@ -152,6 +160,7 @@ abstract public class ArticlePageObject extends MainPageObject
         );
     }
 
+    @Step("Adding article to my saved list")
     public void addArticlesToMySaved()
     {
         if(Platform.getInstance().isMW()){
@@ -163,6 +172,7 @@ abstract public class ArticlePageObject extends MainPageObject
         );
     }
 
+    @Step("Remove Article From Saved If It Added")
     public void removeArticleFromSavedIfItAdded()
     {
         if(this.isElementPresent(OPTIONS_REMOVE_FROM_MY_LIST_BUTTON)){
@@ -178,6 +188,7 @@ abstract public class ArticlePageObject extends MainPageObject
         }
     }
 
+    @Step("Close article")
     public void closeArticle()
     {
         if(Platform.getInstance().isIOS() || Platform.getInstance().isAndroid()){

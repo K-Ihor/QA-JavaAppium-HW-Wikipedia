@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------
+Test set: tests.ArticleTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 15.817 s <<< FAILURE! - in tests.ArticleTests
+test_assertElementPresent(tests.ArticleTests)  Time elapsed: 15.452 s  <<< ERROR!
+org.openqa.selenium.TimeoutException: 
+Expected condition failed: Can`t find and click search result with substringbject-oriented programming language
+ (tried for 10 second(s) with 500 milliseconds interval)
+	at tests.ArticleTests.test_assertElementPresent(ArticleTests.java:20)
+Caused by: org.openqa.selenium.NoSuchElementException: 
+Cannot locate an element using By.xpath: div[contains(@class, 'wikipedia-description')][contains(text(),'bject-oriented programming language')]
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z'
+System info: host: 'ihor-HP', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.4.0-74-generic', java.version: '1.8.0_292'
+Driver info: driver.version: unknown
+	at tests.ArticleTests.test_assertElementPresent(ArticleTests.java:20)
+
